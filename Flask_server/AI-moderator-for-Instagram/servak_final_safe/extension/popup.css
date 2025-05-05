@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 15px;
+    background-color: #1e1e2f;
+    color: #ffffff;
+    width: 250px;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .info {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  button {
+    padding: 8px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+  }
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Новый стиль для подсвеченных комментариев */
+  .ai-moderated-wrapper {
+    animation: fadeInHighlight 0.8s ease forwards;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  @keyframes fadeInHighlight {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      transform: scale(1);
+    }
+    50% {
+      background-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.02);
+    }
+    100% {
+      background-color: inherit; /* Финальный цвет */
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+    }
+  }
+  

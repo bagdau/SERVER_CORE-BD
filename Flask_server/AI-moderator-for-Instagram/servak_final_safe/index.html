@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Dashboard</title>
+  <style>
+    body { font-family: Arial; display: flex; background: #111; color: white; }
+    table { border-collapse: collapse; width: 75%; margin-right: 20px; }
+    th, td { padding: 8px; border: 1px solid #444; }
+    th { background: #333; }
+    tr:nth-child(even) { background: #1a1a1a; }
+    .stats { width: 25%; background: #1c1c1c; padding: 10px; border-left: 2px solid #555; }
+    .bar { height: 12px; display: inline-block; margin: 2px 0; }
+    .bar.positive { background: #4caf50; }
+    .bar.neutral { background: #ffeb3b; }
+    .bar.negative { background: #f44336; }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>Комментарии</h2>
+    <table id="commentsTable">
+      <thead>
+        <tr><th>User ID</th><th>Post ID</th><th>Author</th><th>Comment</th><th>Category</th><th>Bot</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="stats">
+    <h2>Аналитика</h2>
+    <div id="stats"></div>
+  </div>
+  <script>
+    async function loadComments() {
+      const res = await fetch("/comments");
+      const data = await res.json();
+      const tbody = document.querySelector("#commentsTable tbody");
+      tbody.innerHTML = "";
+      data.forEach(entry => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${entry.user_id}</td>
+          <td>${entry.post_id}</td>
+          <td>${entry.author}</td>
+          <td>${entry.comment}</td>
+          <td>${entry.category}</td>
+          <td>${entry.is_bot ? "🤖" : "✅"}</td>`;
+        tbody.appendChild(row);
+      });
+    }
+
+    loadComments();
+    setInterval(() => {
+      loadComments();
+    }, 5000);
+  </script>
+</body>
+</html>

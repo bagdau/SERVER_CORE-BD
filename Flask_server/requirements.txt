@@ -1,0 +1,8 @@
+Flask
+flask-cors
+flask-socketio
+flask-socketio[asyncio]
+eventlet
+flask-socketio[gevent]
+flask-socketio[threading]
+flask-socketio[uvicorn]
